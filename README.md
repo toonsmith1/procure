@@ -194,6 +194,24 @@ c:\eoffice/
 
 ---
 
+## 🧪 ชุดข้อมูลจำลอง (Mockup Data)
+
+ระบบได้จัดเตรียมชุดข้อมูลจำลองสมจริงสำหรับหน่วยงานภาครัฐ (อิงบริบทศูนย์ข้อมูลเกษตรแห่งชาติ สศก.) จำนวน 18 รายการ (สัญญา 6, ใบสั่ง 7, ข้อตกลง 5) พร้อมรายงาน สขร.1 จำนวน 6 เดือน:
+
+1. **ไฟล์ Excel สำเร็จรูป**:
+   - [`mockup-data-procurement.xlsx`](file:///c:/eoffice/mockup-data-procurement.xlsx): รวม 4 Sheet (`Contracts`, `MonthlyReports`, `MonthlyReportItems`, และตาราง `สขร.1_มกราคม_2569` ฟอร์แมตทางการราชการ)
+2. **ไฟล์ CSV แยก Sheet สำหรับ Import ลง Google Sheets ทันที**:
+   - [`mockup_contracts.csv`](file:///c:/eoffice/mockup_contracts.csv) (18 รายการ)
+   - [`mockup_monthly_reports.csv`](file:///c:/eoffice/mockup_monthly_reports.csv) (6 เดือน)
+   - [`mockup_monthly_report_items.csv`](file:///c:/eoffice/mockup_monthly_report_items.csv) (16 การผูกโยง)
+3. **ไฟล์ JSON**: [`mockup-data.json`](file:///c:/eoffice/mockup-data.json)
+4. **โหลดบนหน้าเว็บโดยตรง (1-Click)**:
+   - กดปุ่ม **"🧪 โหลดข้อมูลจำลอง"** บนแถบด้านบนของหน้าเว็บ หรือไปที่หน้า **"⚙️ ตั้งค่า"**
+5. **เติมข้อมูลลง Google Sheets ผ่าน Apps Script**:
+   - ใน Apps Script Editor เลือกฟังก์ชัน **`seedMockData`** แล้วกด **เรียกใช้ (Run)** ข้อมูลจะถูกบันทึกลง 3 Sheet อัตโนมัติ
+
+---
+
 ## 🛡️ เทคโนโลยีที่ใช้
 * **Frontend**: HTML5, CSS3, Vanilla JavaScript (ES6+), ExcelJS 4.4.0 (CDN)
 * **Backend**: Google Apps Script (REST-like Web App)

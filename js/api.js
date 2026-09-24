@@ -203,6 +203,13 @@ const api = (function() {
      */
     async saveReportItems(reportId, contractIds) {
       return await post("saveReportItems", { reportId, contractIds });
+    },
+
+    /**
+     * เติมข้อมูลจำลอง (Mockup Data) ลง Google Sheets ผ่าน API
+     */
+    async seedMockData() {
+      return await post("seedMockData");
     }
   };
 
