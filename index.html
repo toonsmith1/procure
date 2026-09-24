@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ทะเบียนคุมพัสดุ V2 — ศูนย์ข้อมูลเกษตรแห่งชาติ</title>
+
+  <!-- Google Fonts: IBM Plex Sans Thai & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- ExcelJS Library for Client-side Excel Generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
+
+  <!-- App Stylesheet -->
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-brand" onclick="showPage('dashboard')">
+        <div class="nav-brand-logo">📋</div>
+        <div class="nav-brand-text">
+          <h1>ทะเบียนคุมพัสดุ V2</h1>
+          <p>ศูนย์ข้อมูลเกษตรแห่งชาติ • สศก.</p>
+        </div>
+      </div>
+
+      <div class="nav-menu">
+        <button class="nav-btn active" data-page="dashboard">
+          <span>📊</span> แดชบอร์ด
+        </button>
+        <button class="nav-btn" data-page="register">
+          <span>📋</span> ทะเบียน
+        </button>
+        <button class="nav-btn" data-page="form">
+          <span>➕</span> บันทึกข้อมูล
+        </button>
+        <button class="nav-btn" data-page="skr1">
+          <span>📥</span> สขร.1
+        </button>
+        <button class="nav-btn" data-page="summary">
+          <span>📄</span> สาระสำคัญ
+        </button>
+        <button class="nav-btn" data-page="settings">
+          <span>⚙️</span> ตั้งค่า
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="main">
+    <!-- Top System Status Banner -->
+    <div class="card status-bar fade-up">
+      <div class="status-indicator">
+        <span id="statusText">⏳ กำลังเชื่อมต่อระบบ...</span>
+      </div>
+      <button id="refreshBtn" class="btn btn-sm btn-primary" onclick="refreshData()">
+        🔄 รีเฟรชข้อมูล
+      </button>
+    </div>
+
+    <!-- Page Views Container -->
+    <section id="page-dashboard"></section>
+    <section id="page-register" class="hidden"></section>
+    <section id="page-form" class="hidden"></section>
+    <section id="page-skr1" class="hidden"></section>
+    <section id="page-summary" class="hidden"></section>
+    <section id="page-settings" class="hidden"></section>
+
+    <!-- Footer -->
+    <footer style="text-align: center; font-size: 11px; color: #475569; margin-top: 40px; padding: 20px 0;">
+      ระบบทะเบียนคุมพัสดุ V2 • ศูนย์ข้อมูลเกษตรแห่งชาติ สำนักงานเศรษฐกิจการเกษตร<br>
+      Static Web App สำหรับใช้งานบน GitHub Pages ร่วมกับ Google Sheets & Google Apps Script
+    </footer>
+  </main>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts in Structured Modular Order -->
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/register.js"></script>
+  <script src="js/skr1.js"></script>
+  <script src="js/export.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
