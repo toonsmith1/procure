@@ -9,10 +9,21 @@
 
 const api = (function() {
 
+  function isConfigured() {
+    return typeof CONFIG !== "undefined" && 
+           CONFIG.API_URL && 
+           CONFIG.API_URL.trim() !== "" && 
+           CONFIG.API_URL.startsWith("https://");
+  }
+
   /**
    * ส่งคำขอ GET ไปยัง Apps Script Web App
    */
   async function get(action, params = {}) {
+    if (!isConfigured()) {
+      throw new Error("NOT_CONFIGURED");
+    }
+
     const url = new URL(CONFIG.API_URL);
     url.searchParams.set("action", action);
     Object.keys(params).forEach(key => {
@@ -94,6 +105,10 @@ const api = (function() {
    * ส่งคำขอ POST ไปยัง Apps Script Web App
    */
   async function post(action, payload = {}) {
+    if (!isConfigured()) {
+      throw new Error("ยังไม่ได้กำหนด Web App URL กรุณาระบุในหน้าตั้งค่า");
+    }
+
     try {
       const body = {
         action: action,

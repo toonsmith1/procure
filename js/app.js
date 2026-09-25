@@ -246,13 +246,20 @@ async function refreshData() {
     // Re-render current page
     showPage(appState.currentPage);
   } catch (err) {
-    console.error("Refresh data error:", err);
-    if (statusEl) {
-      statusEl.innerHTML = `⚠️ โหมดสาธิต (ไม่สามารถเชื่อมต่อ Google Sheet ได้) — ตรวจสอบ Web App URL ในหน้าตั้งค่า`;
+    console.warn("Refresh data notice:", err.message);
+    if (err.message === "NOT_CONFIGURED" || !CONFIG.API_URL) {
+      if (statusEl) {
+        statusEl.innerHTML = `⚙️ ยังไม่ได้เชื่อมต่อ Google Sheet — กรุณาระบุ Web App URL ในเมนู <a href="#" onclick="showPage('settings'); return false;" style="color:#38bdf8; font-weight:600; text-decoration:underline;">ตั้งค่า</a>`;
+      }
+      showToast("กรุณาใส่ Web App URL ของท่านในหน้าตั้งค่าเพื่อเริ่มใช้งาน", "info", 4000);
+    } else {
+      if (statusEl) {
+        statusEl.innerHTML = `⚠️ โหมดสาธิต (ไม่สามารถเชื่อมต่อ Google Sheet ได้) — ตรวจสอบ Web App URL ในหน้าตั้งค่า`;
+      }
+      showToast("ไม่สามารถเชื่อมต่อ Google Apps Script: " + err.message, "warning", 5000);
     }
-    showToast("ไม่สามารถเชื่อมต่อ Google Apps Script: " + err.message, "error", 5000);
 
-    // โหลด Mock Data หากยังไม่มีข้อมูล เพื่อให้ผู้ใช้สามารถทดลองเล่นหน้าตาและฟังก์ชันได้
+    // โหลดข้อมูลตัวอย่างเมื่อยังไม่ได้เชื่อมต่อ เพื่อให้ผู้ใช้สามารถทดลองดูหน้าตาและการทำงานได้
     if (appState.contracts.length === 0) {
       loadSampleData();
       showPage(appState.currentPage);

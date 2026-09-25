@@ -10,7 +10,7 @@
 const CONFIG = {
   // ใส่ Web App URL ที่ได้จาก Deploy Google Apps Script
   // ตัวอย่าง: "https://script.google.com/macros/s/AKfycby.../exec"
-  API_URL: "https://script.google.com/macros/s/AKfycby9H0DgQCCie6XxnvGmokCxCNwNnv16zlSSH0FZqN-d-ff2tIvoICtasD_xxxhxUaeT9Q/exec",
+  API_URL: "",
 
   // ข้อมูลหน่วยงาน
   AGENCY_NAME: "ศูนย์ข้อมูลเกษตรแห่งชาติ",
@@ -65,7 +65,11 @@ const CONFIG = {
   ]
 };
 
-// ตรวจสอบว่ามี Custom API URL บันทึกไว้ใน Local Storage หรือไม่ (สำหรับทดสอบในเครื่อง)
-if (localStorage.getItem("procure_custom_api_url")) {
-  CONFIG.API_URL = localStorage.getItem("procure_custom_api_url");
+// ตรวจสอบว่ามี Custom API URL บันทึกไว้ใน Local Storage หรือไม่
+const savedCustomUrl = localStorage.getItem("procure_custom_api_url");
+if (savedCustomUrl && savedCustomUrl !== "https://script.google.com/macros/s/AKfycby9H0DgQCCie6XxnvGmokCxCNwNnv16zlSSH0FZqN-d-ff2tIvoICtasD_xxxhxUaeT9Q/exec") {
+  CONFIG.API_URL = savedCustomUrl;
+} else if (savedCustomUrl === "https://script.google.com/macros/s/AKfycby9H0DgQCCie6XxnvGmokCxCNwNnv16zlSSH0FZqN-d-ff2tIvoICtasD_xxxhxUaeT9Q/exec") {
+  localStorage.removeItem("procure_custom_api_url");
 }
+
